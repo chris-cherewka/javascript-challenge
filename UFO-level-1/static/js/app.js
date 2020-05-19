@@ -1,10 +1,10 @@
 // from data.js
-var tableData = data;
+var table = data;
 
 var tbody = d3.select("tbody");
 
 // Populate table with data
-tableData.forEach(function(sighting) {
+table.forEach(function(sighting) {
     var row = tbody.append("tr");
     Object.entries(sighting).forEach(function([key, value]) {
         var cell = row.append("td");
@@ -15,12 +15,13 @@ tableData.forEach(function(sighting) {
 var button = d3.select("#filter-btn");
 
 button.on("click", function() {
+    d3.event.preventDefault();
     tbody.html("");
 
     var inputElement = d3.select("#datetime");
     var inputValue = inputElement.property("value");
 
-    var filteredData = tableData.filter(data => data.datetime === inputValue);
+    var filteredData = table.filter(data => data.datetime === inputValue);
 
     console.log(filteredData)
     filteredData.forEach(function(search) {
